@@ -190,12 +190,12 @@ public class ShSwitchView extends View {
 
     private int tempTintColor;
 
-    private static final int backgroundColor = 0xFFCCCCCC;
-    private int colorStep = backgroundColor;
-    private static final int foregroundColor = 0xFFEFEFEF;
+    private int backgroundColor;
+    private int colorStep;
+    private int foregroundColor;
+    private int knobColor;
 
     private Paint paint;
-
     private RectF ovalForPath;
     private Path roundRectPath;
 
@@ -203,6 +203,8 @@ public class ShSwitchView extends View {
 
     private boolean dirtyAnimation = false;
     private boolean isAttachedToWindow = false;
+
+
 
     public interface OnSwitchStateChangeListener{
         public void onSwitchStateChange(boolean isOn);
@@ -231,6 +233,10 @@ public class ShSwitchView extends View {
 
         outerStrokeWidth = ta.getDimensionPixelOffset(R.styleable.ShSwitchView_outerStrokeWidth, defaultOuterStrokeWidth);
         shadowSpace = ta.getDimensionPixelOffset(R.styleable.ShSwitchView_shadowSpace, defaultShadowSpace);
+        foregroundColor = ta.getColor(R.styleable.ShSwitchView_foreColor, 0xFFEFEFEF);
+        backgroundColor = ta.getColor(R.styleable.ShSwitchView_backColor, 0xFFCCCCCC);
+        colorStep = backgroundColor;
+        knobColor = ta.getColor(R.styleable.ShSwitchView_knobColor, 0xFFEFEFEF);
 
         ta.recycle();
 
@@ -263,6 +269,15 @@ public class ShSwitchView extends View {
         knobMoveAnimator.setInterpolator(new DecelerateInterpolator());
 
         shadowDrawable = context.getResources().getDrawable(R.drawable.shadow);
+    }
+
+    public void setBackgroundColor(int color){
+        backgroundColor = color;
+        colorStep = color;
+    }
+
+    public void setForegroundColor(int color){
+        foregroundColor = color;
     }
 
     public void setOnSwitchStateChangeListener(OnSwitchStateChangeListener onSwitchStateChangeListener){
@@ -545,7 +560,7 @@ public class ShSwitchView extends View {
         //innerContent
         paint.setColor(foregroundColor);
         canvas.drawRoundRect(innerContentBound, innerContentBound.height() / 2, innerContentBound.height() / 2, paint);
-
+        paint.setColor(knobColor);
         //knob
 //        shadowDrawable.setBounds((int) (knobBound.left - shadowSpace), (int) (knobBound.top - shadowSpace), (int) (knobBound.right + shadowSpace), (int) (knobBound.bottom + shadowSpace));
 //        shadowDrawable.draw(canvas);

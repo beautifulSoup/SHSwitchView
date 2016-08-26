@@ -5,6 +5,9 @@
         <attr name="tintColor" format="reference|color" />
         <attr name="outerStrokeWidth" format="reference|dimension" />
         <attr name="shadowSpace" format="reference|dimension" />
+        <attr name="foreColor" format="reference|color"/>
+        <attr name="backColor" format="reference|color"/>
+        <attr name="knobColor" format="reference|color"/>
     </declare-styleable>
 
 </resources>
