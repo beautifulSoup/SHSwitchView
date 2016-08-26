@@ -280,6 +280,10 @@ public class ShSwitchView extends View {
         foregroundColor = color;
     }
 
+    public void setKnobColor(int color){
+        knobColor = color;
+    }
+
     public void setOnSwitchStateChangeListener(OnSwitchStateChangeListener onSwitchStateChangeListener){
         this.onSwitchStateChangeListener = onSwitchStateChangeListener;
     }
@@ -287,7 +291,7 @@ public class ShSwitchView extends View {
     public OnSwitchStateChangeListener getOnSwitchStateChangeListener(){
         return this.onSwitchStateChangeListener;
     }
-
+    
     void setInnerContentRate(float rate){
         this.innerContentRate = rate;
 
